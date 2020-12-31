@@ -2,9 +2,11 @@ import numpy as np
 import cv2
 import time
 
+#  ! For some reason only Full Path is working, relative path seems to fuck it up haha
 video = cv2.VideoCapture(
     'C:/Users/seand/OneDrive/Documents/University/Advanced Vision/ARI3129-Advanced-Vision/videos/rainTest.mp4')
 
+# Takes the first 30 frames for background estimation
 FOI = video.get(cv2.CAP_PROP_FRAME_COUNT) * np.random.uniform(size=30)
 
 frames = []
@@ -13,7 +15,7 @@ for frameOI in FOI:
     ret, frame = video.read()
     frames.append(frame)
 
-
+# Taking median pixel values to get a background image
 bgFrame = np.median(frames, axis=0).astype(dtype=np.uint8)
 cv2.imshow('bg', bgFrame)
 cv2.waitKey(0)
@@ -25,6 +27,7 @@ while True:
         print('error reading video')
         break
 
+    # Subtracting in both directions and then adding the different thresholds together to create a better mask
     subtraction1 = cv2.subtract(bgFrame, frame)
     subtraction2 = cv2.subtract(frame, bgFrame)
 
@@ -36,11 +39,13 @@ while True:
 
     fgmask = cv2.add(fgmask1, fgmask2)
 
+    # Morphological operations to remove noise and close gaps
     kernel = np.ones((5, 5), np.uint8)
     fgmask = cv2.morphologyEx(fgmask, cv2.MORPH_OPEN, kernel, iterations=1)
     fgmask = cv2.morphologyEx(fgmask, cv2.MORPH_CLOSE, kernel, iterations=2)
     fgmask = cv2.dilate(fgmask, kernel, iterations=3)
 
+    # Extracting foreground
     fg = cv2.bitwise_and(frame, frame, mask=fgmask)
 
     cv2.imshow('Video', frame)
