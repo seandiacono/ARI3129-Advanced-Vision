@@ -2,8 +2,7 @@ import numpy as np
 import cv2
 import time
 
-video = cv2.VideoCapture(
-    'videos/gozo/Video 1.mp4')
+video = cv2.VideoCapture("videos/night.mp4")
 
 # Takes the first 30 frames for background estimation
 FOI = video.get(cv2.CAP_PROP_FRAME_COUNT) * np.random.uniform(size=30)
