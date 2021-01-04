@@ -2,9 +2,8 @@ import numpy as np
 import cv2
 import time
 
-#  ! For some reason only Full Path is working, relative path seems to mess it up haha
 video = cv2.VideoCapture(
-    'C:/Users/seand/OneDrive/Documents/University/Advanced Vision/ARI3129-Advanced-Vision/videos/msida/20200405_190010.mp4')
+    'videos/gozo/Video 1.mp4')
 
 # Takes the first 30 frames for background estimation
 FOI = video.get(cv2.CAP_PROP_FRAME_COUNT) * np.random.uniform(size=30)
