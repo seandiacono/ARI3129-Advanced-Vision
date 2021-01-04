@@ -144,5 +144,10 @@ dmypy.json
 
 # End of https://www.toptal.com/developers/gitignore/api/python
 
+videos/gozo/*.avi
+videos/gozo/*.mp4
+
+videos/msida/*.mp4
+videos/msida/*.avi
 *.avi
 *.mp4
