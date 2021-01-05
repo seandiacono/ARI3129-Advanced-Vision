@@ -3,7 +3,7 @@ import cv2
 
 fps = 15
 
-for name in os.listdir("videos"):
+for name in os.listdir("../videos"):
 
     name = name[:-4]
 
