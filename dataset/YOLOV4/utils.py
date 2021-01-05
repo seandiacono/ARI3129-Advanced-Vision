@@ -1,6 +1,6 @@
 import os
 
-directory = "rainy_annotations/"
+directory = "rainy/"
 
 # Change file name of images
 for filename in os.listdir(directory):
