@@ -32,31 +32,34 @@ def draw(img, labels):
 
     return img
 
-name = "sunny"
+names = ["cloudy", "cloudy2", "night", "rainy", "sunny"]
 
-path = f"dataset/{name}"
 
-# load annotations
-ann = f"annotations/{name}"
-labels = {}
+for name in names:
 
-for file in os.listdir(ann):
-    labels[file[:-4]] = open(f"{ann}/{file}").read().split("\n")
+    path = f"dataset/{name}"
 
-img_array = []
+    # load annotations
+    ann = f"new_annotations/{name}"
+    labels = {}
 
-for frame in os.listdir(path):
-    img = cv2.imread(f"{path}/{frame}")
-    img = draw(img, labels[frame[:-4]])
+    for file in os.listdir(ann):
+        labels[file[:-4]] = open(f"{ann}/{file}").read().split("\n")
 
-    img_array.append(img)
+    img_array = []
 
-height, width, _ = img_array[0].shape
-size = (width, height)
+    for frame in os.listdir(path):
+        img = cv2.imread(f"{path}/{frame}")
+        img = draw(img, labels[frame[:-4]])
 
-fps = 15
-out = cv2.VideoWriter(f'{name}.avi',cv2.VideoWriter_fourcc(*'DIVX'), fps, size)
-    
-for i in range(len(img_array)):
-    out.write(img_array[i])
-out.release()
+        img_array.append(img)
+
+    height, width, _ = img_array[0].shape
+    size = (width, height)
+
+    fps = 15
+    out = cv2.VideoWriter(f'{name}.avi',cv2.VideoWriter_fourcc(*'DIVX'), fps, size)
+        
+    for i in range(len(img_array)):
+        out.write(img_array[i])
+    out.release()
