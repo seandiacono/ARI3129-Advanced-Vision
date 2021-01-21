@@ -30,3 +30,5 @@ ARI3129-Advanced-Vision
 | maskrcnn-videos   | _maskrcnn-images_ in video format     | | 3
 | road-count   | Video analysis deliverables       | | 5
 | src  | Contains Python scripts    | ☑ | 2-5
+
+Other folders can be found from: https://drive.google.com/file/d/1eKKcXFtIpgdEtd-ej_oPbnv1DtFnopaO/view?usp=sharing (only accessible to University of Malta account holders)
