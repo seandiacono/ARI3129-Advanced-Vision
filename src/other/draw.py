@@ -7,12 +7,15 @@ def draw(img, labels):
     img = img.copy()
     height, width, _ = img.shape
 
+    a = []
+
     for label in labels:
 
         if label == '':
             continue
 
         c, x, y, w, h = map(float, label.split(' '))
+
 
         l = int((x - w / 2) * width)
         r = int((x + w / 2) * width)
@@ -28,7 +31,9 @@ def draw(img, labels):
         if b > height - 1:
             b = height - 1
 
-        cv2.rectangle(img, (l, t), (r, b), color[int(c)], 1)
+        a.append((l, t, r, b, c))
+
+        #cv2.rectangle(img, (l, t), (r, b), color[int(c)], 1)
 
     return img
 
@@ -36,6 +41,9 @@ names = ["cloudy", "cloudy2", "night", "rainy", "sunny"]
 
 
 for name in names:
+
+    if name != "rainy":
+        continue
 
     path = f"dataset/{name}"
 
@@ -49,6 +57,10 @@ for name in names:
     img_array = []
 
     for frame in os.listdir(path):
+
+        if frame != "0343.jpg":
+            continue
+
         img = cv2.imread(f"{path}/{frame}")
         img = draw(img, labels[frame[:-4]])
 

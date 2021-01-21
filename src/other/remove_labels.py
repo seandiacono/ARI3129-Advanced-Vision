@@ -12,7 +12,9 @@ for name in names:
 
     for file in os.listdir(path):
         raw = open(f"{path}/{file}").read().split("\n")
-        labels[file[:-4]] = [r for r in raw if r.split(" ")[0] in labels_to_accept]
+
+
+        labels[file[:-4]] = [r.replace("3", "1") for r in raw if r.split(" ")[0] in labels_to_accept]
 
         try:
             f = open(f"{new_folder}/{name}/{file}", 'w')
