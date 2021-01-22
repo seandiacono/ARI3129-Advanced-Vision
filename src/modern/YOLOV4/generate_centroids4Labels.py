@@ -1,9 +1,9 @@
 import json
 
-with open('src/modern/YOLOV4/output.json', 'r') as f:
+with open('src/modern/YOLOV4/4Labels/output.json', 'r') as f:
     train_dict = json.load(f)
 
-with open('src/modern/YOLOV4/output2.json', 'r') as f:
+with open('src/modern/YOLOV4/4Labels/output2.json', 'r') as f:
     test_dict = json.load(f)
 
 
@@ -67,13 +67,25 @@ for dictionary in dicts:
                 w = obj["relative_coordinates"]["width"]
                 h = obj["relative_coordinates"]["height"]
 
-                new_x = int((x-w) * width)
-                new_y = int((y-h) * height)
+                l = int((x - w / 2) * width)
+                r = int((x + w / 2) * width)
+                t = int((y - h / 2) * height)
+                b = int((y + h / 2) * height)
 
-                new_x = check(new_x, width)
-                new_y = check(new_y, height)
+                if l < 0:
+                    l = 0
+                if r > width - 1:
+                    r = width - 1
+                if t < 0:
+                    t = 0
+                if b > height - 1:
+                    b = height - 1
 
-                obj_centroid = str(new_x)+"_"+str(new_y)+"_"+str(class_id)
+                center_x = int((l+r)/2)
+                center_y = int((t+b)/2)
+
+                obj_centroid = str(center_x)+"_" + \
+                    str(center_y)+"_"+str(class_id)
 
                 objects.append(obj_centroid)
         centroids[name] = objects

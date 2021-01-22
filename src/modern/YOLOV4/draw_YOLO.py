@@ -6,6 +6,15 @@ color = {1: (0, 0, 255), 2: (255, 0, 0), 3: (0, 255, 0)}
 classes = {1: 'car', 2: 'bike', 3: 'person'}
 
 
+def check(c, b):
+    if c < 0:
+        return 0
+    elif c > b - 1:
+        return b - 1
+    else:
+        return c
+
+
 def draw(img, objs):
     img = img.copy()
     height, width, _ = img.shape
@@ -78,7 +87,7 @@ for dictionary in dicts:
             print(name)
         else:
             img = draw(img, objs)
-            cv2.imwrite(f"datasetYOLOBoxes/{name}", img)
+            cv2.imwrite(f"datasetCentroids/{name}", img)
 
 
 # for name in names:
