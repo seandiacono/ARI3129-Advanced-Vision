@@ -49,6 +49,7 @@ for dictionary in dicts:
                 height = sizes[f"{vidName}_height"]
 
                 class_id = obj["class_id"] + 1
+
                 x = obj["relative_coordinates"]["center_x"]
                 y = obj["relative_coordinates"]["center_y"]
                 w = obj["relative_coordinates"]["width"]
