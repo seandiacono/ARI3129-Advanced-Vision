@@ -3,5 +3,7 @@ dataset-scene
 dataset-split-vgg
 dataset-split-yolo
 maskrcnn-images
+yolo-images
 maskrcnn-videos
+yolo-videos
 road-count
