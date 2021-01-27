@@ -1,9 +1,9 @@
 import json
 
-with open('src/modern/YOLOV4/output.json', 'r') as f:
+with open('src/modern/YOLOV4/3Labels/output.json', 'r') as f:
     train_dict = json.load(f)
 
-with open('src/modern/YOLOV4/output2.json', 'r') as f:
+with open('src/modern/YOLOV4/3Labels/output2.json', 'r') as f:
     test_dict = json.load(f)
 
 
@@ -67,4 +67,4 @@ for dictionary in dicts:
         centroids[name] = objects
 
 with open('yolo_centroids.json', 'w') as fp:
-    json.dump(centroids, fp)
+    json.dump(centroids, fp, indent=4)

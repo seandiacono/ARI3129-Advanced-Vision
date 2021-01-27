@@ -7,11 +7,11 @@ img_arrays = {"cloudy2" : [], "cloudy": [], "night": [], "rainy": [], "sunny": [
 
 model = "haar"
 
-for frame in os.listdir(f"results/{model}-images"):
+for frame in os.listdir(f"{model}-images"):
 
     name = frame[:-9]
 
-    img = cv2.imread(f"results/{model}-images/{frame}")
+    img = cv2.imread(f"{model}-images/{frame}")
         
     height, width, layers = img.shape
     size = (width, height)
@@ -22,7 +22,7 @@ for name in img_arrays:
 
     img_array = img_arrays[name]
     h, w, _ = img_array[0].shape
-    out = cv2.VideoWriter(f"results/{model}-videos/{name}.avi", cv2.VideoWriter_fourcc(*'DIVX'), fps, (w,h))
+    out = cv2.VideoWriter(f"{model}-videos/{name}.avi", cv2.VideoWriter_fourcc(*'DIVX'), fps, (w,h))
 
     for i in range(len(img_array)):
         img = img_array[i][0:h,0:w]

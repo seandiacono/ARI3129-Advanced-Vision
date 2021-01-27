@@ -3,8 +3,8 @@ import os
 import json
 
 model = "haar"
-true_path = f"video-analysis/lane-count/gt_count.json"
-pred_path = f"video-analysis/lane-count/{model}_count.json"
+true_path = f"video-analysis-results/lane-count/gt_count.json"
+pred_path = f"video-analysis-results/lane-count/{model}_count.json"
 
 y_true_d = dict(sorted(json.load(open(true_path)).items()))
 y_pred_d = dict(sorted(json.load(open(pred_path)).items()))

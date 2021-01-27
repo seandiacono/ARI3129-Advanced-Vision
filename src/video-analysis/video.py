@@ -6,7 +6,7 @@ import numpy as np
 font = cv2.FONT_HERSHEY_SIMPLEX
 model = r"haar"
 path = f"results/{model}-images"
-count = json.load(open(f"video-analysis/lane-count/{model}_count.json"))
+count = json.load(open(f"video-analysis-results/lane-count/{model}_count.json"))
 polys = {}
 maskrcnn_pad = {"s1" : 93, "s2" : 133, "s3" : 142}
 
@@ -47,9 +47,9 @@ def write_text(img, name, count, sx, sy, c):
     cv2.putText(img, f"Persons: {count[2]}", (sx, sy+90), font, 0.75, c, 2, cv2.LINE_AA)
 
 
-for file in os.listdir(r"video-analysis/lane-count/parts"):
+for file in os.listdir(r"video-analysis-results/lane-count/parts"):
     name = file.split(".")[0]
-    j = json.load(open(f"video-analysis/lane-count/parts/{file}"))
+    j = json.load(open(f"video-analysis-results/lane-count/parts/{file}"))
 
     sx, sy = (1, 1)
     c = 0
@@ -82,7 +82,7 @@ for name in img_arrays:
 
     img_array = img_arrays[name]
     h, w, _ = img_array[0].shape
-    out = cv2.VideoWriter(f"video-analysis/lane-count/{model}/{name}.avi", cv2.VideoWriter_fourcc(*'DIVX'), 15, (w,h))
+    out = cv2.VideoWriter(f"video-analysis-results/lane-count/{model}/{name}.avi", cv2.VideoWriter_fourcc(*'DIVX'), 15, (w,h))
 
     for i in range(len(img_array)):
         img = img_array[i][0:h,0:w]

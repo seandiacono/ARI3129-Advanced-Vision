@@ -91,4 +91,4 @@ for dictionary in dicts:
         centroids[name] = objects
 
 with open('yolo_centroids.json', 'w') as fp:
-    json.dump(centroids, fp)
+    json.dump(centroids, fp, indent=4)
