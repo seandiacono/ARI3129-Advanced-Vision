@@ -3,23 +3,29 @@ import cv2
 
 fps = 15
 
-for name in os.listdir("../videos"):
+img_arrays = {"cloudy2" : [], "cloudy": [], "night": [], "rainy": [], "sunny": []}
 
-    name = name[:-4]
+model = "haar"
 
-    img_array = []
+for frame in os.listdir(f"results/{model}-images"):
 
-    for frame in os.listdir(f"dataset/{name}"):
+    name = frame[:-9]
 
-        img = cv2.imread(f"dataset/{name}/{frame}")
+    img = cv2.imread(f"results/{model}-images/{frame}")
         
-        height, width, layers = img.shape
-        size = (width, height)
+    height, width, layers = img.shape
+    size = (width, height)
 
-        img_array.append(img)
+    img_arrays[name].append(img)
 
-    out = cv2.VideoWriter(f"dataset/{name}.avi", cv2.VideoWriter_fourcc(*'DIVX'), fps, size)
+for name in img_arrays:
+
+    img_array = img_arrays[name]
+    h, w, _ = img_array[0].shape
+    out = cv2.VideoWriter(f"results/{model}-videos/{name}.avi", cv2.VideoWriter_fourcc(*'DIVX'), fps, (w,h))
 
     for i in range(len(img_array)):
-        out.write(img_array[i])
+        img = img_array[i][0:h,0:w]
+        out.write(img)
+
     out.release()

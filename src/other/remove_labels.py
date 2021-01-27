@@ -1,12 +1,12 @@
 import os
 import cv2
 
-new_folder = "new_annotations"
+new_folder = "annotations/annotations-filtered/"
 names = ["cloudy", "cloudy2", "night", "rainy", "sunny"]
 labels_to_accept = ["0", "1", "2", "3"]
 
 for name in names:
-    path = f"annotations/{name}"
+    path = f"annotations/annotations-original/{name}"
 
     labels = {}
 

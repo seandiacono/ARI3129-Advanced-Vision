@@ -6,7 +6,7 @@ def saveframe(name, sec):
     vidcap.set(cv2.CAP_PROP_POS_MSEC,sec*1000)
     success, image = vidcap.read()
     if success: 
-        cv2.imwrite(f"dataset/{name}/{'%04d' % count}.jpg", image)
+        cv2.imwrite(f"dataset/dataset-scene/{name}/{'%04d' % count}.jpg", image)
     return success
 
 fps = 15
@@ -24,8 +24,8 @@ for video in os.listdir(path):
     name = video[:-4]
     
 
-    try: os.mkdir(f"dataset/{name}")
-    except FileExistsError: print(f"dataset/{name} folder already exists")
+    try: os.mkdir(f"dataset/dataset-scene/{name}")
+    except FileExistsError: print(f"dataset/dataset-scene/{name} folder already exists")
 
     success = saveframe(name, sec)
 

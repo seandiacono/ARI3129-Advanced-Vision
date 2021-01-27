@@ -2,14 +2,14 @@ import os
 import random
 import cv2
 
-img_root = r"images"
+img_root = r"dataset/dataset-all"
 
 def write_anns(sub, mode):
     for img in sub:
         name = img[:-9]
         number = img[len(name)+1:-4]
 
-        toread = f"new_annotations//{name}//{number}.txt"
+        toread = f"annotations//annotations-filtered//{name}//{number}.txt"
         folder = open(toread).read()
 
         with open(f"../{mode}/{name}_{number}.txt", "w+") as f:
@@ -21,7 +21,7 @@ def write_images(sub, mode):
         name = img[:-9]
         number = img[len(name)+1:-4]
 
-        toread = f"images//{name}_{number}.jpg"
+        toread = f"dataset//dataset-all//{name}_{number}.jpg"
 
         image = cv2.imread(toread)
 

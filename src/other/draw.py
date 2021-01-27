@@ -31,9 +31,7 @@ def draw(img, labels):
         if b > height - 1:
             b = height - 1
 
-        a.append((l, t, r, b, c))
-
-        #cv2.rectangle(img, (l, t), (r, b), color[int(c)], 1)
+        cv2.rectangle(img, (l, t), (r, b), color[int(c)], 1)
 
     return img
 
@@ -42,13 +40,9 @@ names = ["cloudy", "cloudy2", "night", "rainy", "sunny"]
 
 for name in names:
 
-    if name != "rainy":
-        continue
+    path = f"dataset/dataset-all/{name}"
 
-    path = f"dataset/{name}"
-
-    # load annotations
-    ann = f"new_annotations/{name}"
+    ann = f"annotations/annotations-filtered/{name}"
     labels = {}
 
     for file in os.listdir(ann):
@@ -57,9 +51,6 @@ for name in names:
     img_array = []
 
     for frame in os.listdir(path):
-
-        if frame != "0343.jpg":
-            continue
 
         img = cv2.imread(f"{path}/{frame}")
         img = draw(img, labels[frame[:-4]])

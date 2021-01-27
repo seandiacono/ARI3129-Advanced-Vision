@@ -39,7 +39,7 @@ def convert(g, height, width):
 def get_gt(frame, img):
     gt = []
 
-    with open(f"test/{frame}.txt", 'r') as f:
+    with open(f"dataset/dataset-split-yolo/test/{frame}.txt", 'r') as f:
         
         file = f.read()
         gt = file.split("\n")
@@ -58,17 +58,16 @@ def get_pred(img):
 
     return np.array(pred)
 
-# create metric_fn
 metric_fn = MeanAveragePrecision(num_classes=1)
-car_cascade = cv2.CascadeClassifier('Cascades/cas1.xml')
+car_cascade = cv2.CascadeClassifier('src/traditional/car.xml')
 
-for frame in os.listdir('test'):
+for frame in os.listdir('dataset/dataset-split-yolo/test/'):
 
     if frame.endswith('.txt'):
         continue
 
     frame = frame[:-4]
-    img = cv2.imread(f"test/{frame}.jpg")
+    img = cv2.imread(f"dataset/dataset-split-yolo/test/{frame}.jpg")
 
     preds = get_pred(img)
     gt = get_gt(frame, img)

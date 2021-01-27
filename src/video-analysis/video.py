@@ -4,9 +4,9 @@ import json
 import numpy as np 
 
 font = cv2.FONT_HERSHEY_SIMPLEX
-model = r"maskrcnn"
-path = f"{model}-images"
-count = json.load(open(f"road-count/{model}_count.json"))
+model = r"haar"
+path = f"results/{model}-images"
+count = json.load(open(f"video-analysis/lane-count/{model}_count.json"))
 polys = {}
 maskrcnn_pad = {"s1" : 93, "s2" : 133, "s3" : 142}
 
@@ -47,9 +47,9 @@ def write_text(img, name, count, sx, sy, c):
     cv2.putText(img, f"Persons: {count[2]}", (sx, sy+90), font, 0.75, c, 2, cv2.LINE_AA)
 
 
-for file in os.listdir(r"road-count/parts"):
+for file in os.listdir(r"video-analysis/lane-count/parts"):
     name = file.split(".")[0]
-    j = json.load(open(f"road-count/parts/{file}"))
+    j = json.load(open(f"video-analysis/lane-count/parts/{file}"))
 
     sx, sy = (1, 1)
     c = 0
@@ -74,7 +74,7 @@ for file in os.listdir(path):
     img = draw_polygon(img, polys[f"{S[name]}_right"], red)
 
     write_text(img, "Left", left, sx=10, sy=50, c=blue)
-    write_text(img, "Right", right, sx=img.shape[0]-200, sy=50, c=red)
+    write_text(img, "Right", right, sx=img.shape[0], sy=50, c=red)
 
     img_arrays[name].append(img)
 
@@ -82,7 +82,7 @@ for name in img_arrays:
 
     img_array = img_arrays[name]
     h, w, _ = img_array[0].shape
-    out = cv2.VideoWriter(f"road-count/maskrcnn/{name}.avi", cv2.VideoWriter_fourcc(*'DIVX'), 15, (w,h))
+    out = cv2.VideoWriter(f"video-analysis/lane-count/{model}/{name}.avi", cv2.VideoWriter_fourcc(*'DIVX'), 15, (w,h))
 
     for i in range(len(img_array)):
         img = img_array[i][0:h,0:w]

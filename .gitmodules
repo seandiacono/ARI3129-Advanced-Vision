@@ -1,3 +1,6 @@
 [submodule "src/modern/maskrcnn-road"]
 	path = src/modern/maskrcnn-road
 	url = https://github.com/wendru18/maskrcnn-road
+[submodule "eva"]
+	path = eva
+	url = https://github.com/Ericsson/eva

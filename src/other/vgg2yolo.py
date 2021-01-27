@@ -4,7 +4,7 @@ import cv2
 def write_ann(frame, folder):
     name = frame.split("_")[0]
     number = frame.split("_")[1].split(".")[0]
-    anns = open(f"new_annotations/{name}/{number}.txt").read().split("\n")
+    anns = open(f"annotations/annotations-filtered/{name}/{number}.txt").read().split("\n")
 
     f = open(f"{yolo}/{folder}/{name}_{number}.txt", 'w+')
 
@@ -13,8 +13,8 @@ def write_ann(frame, folder):
 
     f.close()
 
-vgg = "vgg_dataset"
-yolo = "yolo_dataset"
+vgg = "dataset/dataset-split-vgg"
+yolo = "dataset/dataset-split-yolo"
 folders = ["test", "train", "val"]
 
 for folder in folders:
