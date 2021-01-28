@@ -1,4 +1,4 @@
-Please download release for executable samples._
+Please download release for executable samples.
 
 Directory of project is found below. 
 
