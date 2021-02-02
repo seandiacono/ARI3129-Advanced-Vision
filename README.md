@@ -1,4 +1,4 @@
-Please download release for executable samples._
+Please download release for executable samples.
 
 Directory of project is found below. Please refer to the repository's release for a light, easy-to-run version of our deliverables. 
 
