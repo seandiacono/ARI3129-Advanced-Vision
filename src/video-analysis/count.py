@@ -9,8 +9,8 @@ from shapely.geometry.polygon import Polygon
 S = {"cloudy" : "s1", "cloudy2" : "s1", "rainy" : "s2", "sunny" : "s2", "night" : "s3"}
 classes = {"car" : 0, "bike" : 1, "person" : 2}
 
-model = "haar"
-path = f"video-analysis-results/lane-count/parts"
+model = "gt"
+path = f"video-analysis/lane-count/parts"
 scenes = {}
 counter = {}
 
@@ -20,7 +20,7 @@ for file in os.listdir(path):
     scenes[f"{name}_left"] = Polygon([(int(x), int(y)) for (x,y) in j["left"]])
     scenes[f"{name}_right"] = Polygon([(int(x), int(y)) for (x,y) in j["right"]])
 
-f = open(f"video-analysis-results/{model}_centroids.json")
+f = open(f"video-analysis/{model}_centroids.json")
 C = json.load(f)
 
 for f in C:

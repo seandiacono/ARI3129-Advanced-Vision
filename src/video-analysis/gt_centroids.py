@@ -2,7 +2,7 @@ import os
 import json
 
 clsdict = { "car" : 1, "bike" : 2, "person" : 3 }
-path = r"dataset-split-vgg/all/via_region_data.json"
+path = r"dataset/dataset-split-vgg/all/via_region_data.json"
 frames = {}
 
 f = open(path)

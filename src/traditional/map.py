@@ -51,7 +51,7 @@ def get_gt(frame, img):
 def get_pred(img):
     
     pred = []
-    rectangles, confidence = car_cascade.detectMultiScale2(img)
+    rectangles, confidence = car_cascade.detectMultiScale2(img, scaleFactor=1.3, minNeighbors=5)
 
     for i,(x,y,w,h) in enumerate(rectangles):
         pred.append([x,y, x+w, y+h, 0, confidence[i][0]])
@@ -71,15 +71,12 @@ for frame in os.listdir('dataset/dataset-split-yolo/test/'):
 
     preds = get_pred(img)
     gt = get_gt(frame, img)
-    metric_fn.add(preds, gt)
 
-
-# compute PASCAL VOC metric
-print(f"VOC PASCAL mAP: {metric_fn.value(iou_thresholds=0.5, recall_thresholds=np.arange(0., 1.1, 0.1))['mAP']}")
-
-# compute PASCAL VOC metric at the all points
-print(f"VOC PASCAL mAP in all points: {metric_fn.value(iou_thresholds=0.5)['mAP']}")
+    try:
+        metric_fn.add(preds, gt)
+    except:
+        continue
 
 # compute metric COCO metric
-print(f"COCO mAP: {metric_fn.value(iou_thresholds=np.arange(0.5, 1.0, 0.05), recall_thresholds=np.arange(0., 1.01, 0.01), mpolicy='soft')['mAP']}")
+print(f"COCO mAP: {metric_fn.value(mpolicy='soft')['mAP']}")
 

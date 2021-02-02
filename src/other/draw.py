@@ -40,7 +40,7 @@ names = ["cloudy", "cloudy2", "night", "rainy", "sunny"]
 
 for name in names:
 
-    path = f"dataset/dataset-all/{name}"
+    path = f"dataset/dataset-scene/{name}"
 
     ann = f"annotations/annotations-filtered/{name}"
     labels = {}

@@ -8,8 +8,8 @@ import cv2
 img_arrays = {"cloudy2" : [], "cloudy": [], "night": [], "rainy": [], "sunny": []}
 ct = {"cloudy2" : CentroidTracker(maxDisappeared=10), "cloudy": CentroidTracker(maxDisappeared=10), "night": CentroidTracker(maxDisappeared=10), "rainy": CentroidTracker(maxDisappeared=10), "sunny": CentroidTracker(maxDisappeared=10)}
 
-model = "haar"
-f = open(f"video-analysis-results/{model}_centroids.json")
+model = "gt"
+f = open(f"video-analysis/{model}_centroids.json")
 C = json.load(f)
 C = dict(sorted(C.items()))
 
@@ -46,7 +46,7 @@ for name in img_arrays:
 
     img_array = img_arrays[name]
     h, w, _ = img_array[0].shape
-    out = cv2.VideoWriter(f"video-analysis-results/vehicle-tracking/{model}/{name}.avi", cv2.VideoWriter_fourcc(*'DIVX'), 15, (w,h))
+    out = cv2.VideoWriter(f"video-analysis/vehicle-tracking/{model}/{name}.avi", cv2.VideoWriter_fourcc(*'DIVX'), 15, (w,h))
 
     for i in range(len(img_array)):
         img = img_array[i][0:h,0:w]

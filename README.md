@@ -1,6 +1,6 @@
 Please download release for executable samples._
 
-Directory of project is found below. 
+Directory of project is found below. Please refer to the repository's release for a light, easy-to-run version of our deliverables. 
 
 ```
 ARI3129-Advanced-Vision
@@ -25,7 +25,7 @@ ARI3129-Advanced-Vision
     └── vehicle-tracking
 ```
 
-Folders not included in repository can be downloaded from: https://drive.google.com/file/d/1eN8hARLyn6STg5dQm4c07ud3A46V71V1/view?usp=sharing (only accessible to University of Malta account holders)
+Folders not included in repository can be downloaded from: https://drive.google.com/file/d/1viLqtj5SUVj0y1HunbOhxFE6MKy5m6Yr/view?usp=sharing (only accessible to University of Malta account holders)
 
 | Folder      | Description | Task/s | Found in repository
 | ------------ | ----------- | --- | - |

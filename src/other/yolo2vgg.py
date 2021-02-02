@@ -28,7 +28,7 @@ def save_labels(labels, mode):
         images.append(label["filename"])
 
     for imgName in images:
-        img = cv2.imread(f"images/{imgName}")
+        img = cv2.imread(f"dataset/dataset-all/{imgName}")
         cv2.imwrite(f"{vgg_path}/{mode}/{imgName}", img)
 
     with open(f"{vgg_path}/{mode}/via_region_data.json", "w") as f:
@@ -103,4 +103,4 @@ val_labels, test_labels = split(other_labels, int(len(other_labels) * 0.5))
 save_labels(train_labels, mode="train")
 save_labels(val_labels, mode="val")
 save_labels(test_labels, mode="test")
-#save_labels(all_labels, mode="all")
+save_labels(all_labels, mode="all")
